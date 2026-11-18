@@ -15,11 +15,16 @@ const GetNotesPage = () => {
       if(res.status === 429){
         setTooManyRequestsStatus(true)
       }
+      if (!Array.isArray(res.data)) {
+        throw new Error('Expected the notes API to return an array')
+      }
       setNotes(res.data)
     } catch (error) {
-      console.log('getAllNotes error', error.response)
+      console.error('getAllNotes error', error)
       if(error.response && error.response.status === 429) {
         setTooManyRequestsStatus(true)
+      } else {
+        toast.error('Unable to load notes. Please try again later.')
       }
     }
   }

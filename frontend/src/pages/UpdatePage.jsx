@@ -7,7 +7,6 @@ const UpdatePage = () => {
   const id = useParams().id
   const [note, setNote] = React.useState({title: '', content: ''})
 
-  console.log('id', id)
   useEffect(() => {
     const getNoteById = async () => {
       try {   
